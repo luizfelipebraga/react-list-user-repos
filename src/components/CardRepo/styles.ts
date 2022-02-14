@@ -25,9 +25,7 @@ export const Title = styled.span`
   text-transform: capitalize;
   font-size: 1.4rem;
   font-weight: 700;
-  overflow: hidden;
   color: #f8f8f8;
-  white-space: nowrap;
 `;
 
 export const Description = styled.p`

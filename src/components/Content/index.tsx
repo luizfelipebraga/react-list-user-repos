@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CardComponent } from "../CardRepo";
+import { FooterComponent } from "../Footer";
 import { InfosUserComponent } from "../InfoUser";
 import { SearchBarComponent } from "../SearchBar";
 import { Container, Grid } from "./styles";
@@ -49,6 +50,7 @@ export function ContentComponent() {
           <strong style={{marginLeft: '2rem', textTransform: 'uppercase'}}>not found</strong>
         </span>
       )}
+      <FooterComponent/>
     </Container>
   );
 }

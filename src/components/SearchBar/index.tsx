@@ -36,6 +36,7 @@ export function SearchBarComponent({ setRepos, setInfoUser }: SearchProps) {
       <Box>
         <Input
           onChange={(event) => setUsername(event.target.value)}
+          onKeyPress={(event) => event.key === 'Enter' && getUserRepos()}
           placeholder="search for username..."
         />
         <SearchIcon size={20} onClick={getUserRepos} />
