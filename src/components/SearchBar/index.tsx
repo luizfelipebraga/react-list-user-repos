@@ -4,19 +4,23 @@ import { Container, Input, SearchIcon, Box } from "./styles";
 
 type SearchProps = {
   setRepos: any;
+  setInfoUser: any;
 };
 
-export function SearchBarComponent({ setRepos }: SearchProps) {
+export function SearchBarComponent({ setRepos, setInfoUser }: SearchProps) {
   const [repo, setRepo] = useState<string>("luizfelipebraga");
 
   const getUserRepos = useCallback(() => {
     api
-      .get(`${repo}/repos`)
-      .then((response) => {
-        setRepos(response.data);
-      })
+      .get(`${repo}/repos?sort=updated&direction=desc&per_page=9`)
+      .then((response) => setRepos(response.data))
       .catch((err) => console.log(err));
-  }, [repo, setRepos]);
+
+    api
+      .get(`${repo}`)
+      .then((response) => setInfoUser(response.data))
+      .catch((err) => console.log(err));
+  }, [repo, setRepos, setInfoUser]);
 
   useEffect(() => {
     getUserRepos();
