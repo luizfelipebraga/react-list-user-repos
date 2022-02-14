@@ -9,7 +9,7 @@ type SearchProps = {
 export function SearchBarComponent({ setRepos }: SearchProps) {
   const [repo, setRepo] = useState<string>("luizfelipebraga");
 
-  const getUserRepos = useCallback(() =>{
+  const getUserRepos = useCallback(() => {
     api
       .get(`${repo}/repos`)
       .then((response) => {
@@ -20,11 +20,7 @@ export function SearchBarComponent({ setRepos }: SearchProps) {
 
   useEffect(() => {
     getUserRepos();
-
-    return () => {
-      setRepos("");
-    };
-  }, [getUserRepos, setRepos]);
+  }, []);
 
   return (
     <Container>
