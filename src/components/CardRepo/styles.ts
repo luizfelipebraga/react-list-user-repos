@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.a`
   display: flex;
+  justify-content: space-between;
   gap: 2rem;
   flex-direction: column;
   max-width: 500px;
@@ -21,6 +22,13 @@ export const Container = styled.div`
   }
 `;
 
+export const Box = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+
+`;
+
 export const Title = styled.span`
   text-transform: capitalize;
   font-size: 1.4rem;
@@ -32,4 +40,16 @@ export const Description = styled.p`
   color: rgb(199, 195, 195);
   font-size: clamp(14px, 2vw, 10px);
   line-height: 25px;
+`;
+
+export const Languages = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: .6rem;
+  flex-wrap: wrap;
+
+
+  span {
+    font-size: .8rem;
+  }
 `;

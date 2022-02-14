@@ -9,6 +9,8 @@ type RepoProps = {
   id: number;
   name: string;
   description: string;
+  html_url: string;
+  topics: string[];
 };
 
 type InfoUser = {
@@ -30,11 +32,14 @@ export function ContentComponent() {
       {userRepo.length > 1 ? (
         <Grid>
           {userRepo.map((repo) => {
+            console.log(repo)
             return (
               <CardComponent
                 key={repo.id}
+                url={repo.html_url}
                 name={repo.name}
                 description={repo.description}
+                topics={repo.topics}
               />
             );
           })}
