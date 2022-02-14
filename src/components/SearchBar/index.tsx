@@ -8,19 +8,24 @@ type SearchProps = {
 };
 
 export function SearchBarComponent({ setRepos, setInfoUser }: SearchProps) {
-  const [repo, setRepo] = useState<string>("luizfelipebraga");
+  const [username, setUsername] = useState<string>("luizfelipebraga");
 
   const getUserRepos = useCallback(() => {
+
+    if(username.trim() === '') return;
+
+    const trimUsername = username.trim();
+
     api
-      .get(`${repo}/repos?sort=updated&direction=desc&per_page=9`)
+      .get(`${trimUsername}/repos?sort=updated&per_page=9`)
       .then((response) => setRepos(response.data))
       .catch((err) => console.log(err));
 
     api
-      .get(`${repo}`)
+      .get(`${trimUsername}`)
       .then((response) => setInfoUser(response.data))
       .catch((err) => console.log(err));
-  }, [repo, setRepos, setInfoUser]);
+  }, [username, setRepos, setInfoUser]);
 
   useEffect(() => {
     getUserRepos();
@@ -30,8 +35,8 @@ export function SearchBarComponent({ setRepos, setInfoUser }: SearchProps) {
     <Container>
       <Box>
         <Input
-          onChange={(event) => setRepo(event.target.value)}
-          placeholder="type the username..."
+          onChange={(event) => setUsername(event.target.value)}
+          placeholder="search for username..."
         />
         <SearchIcon size={20} onClick={getUserRepos} />
       </Box>
