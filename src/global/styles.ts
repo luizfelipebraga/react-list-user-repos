@@ -44,6 +44,10 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
+  input {
+    width: 100%;
+  }
+
   a {
     list-style: none;
     text-decoration: none;
