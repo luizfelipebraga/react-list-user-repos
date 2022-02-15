@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Consult Repositories from Github",
+  "short_name": "PWA Consult App",
+  "name": "PWA Consult Repository",
   "icons": [
     {
       "src": "/assets/orangeCircle.png",
