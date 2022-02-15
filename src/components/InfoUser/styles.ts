@@ -7,12 +7,16 @@ export const Container = styled.div`
   gap: 3rem;
 
   margin: 2.5rem 0 5rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const Name = styled.span`
   color: #64ffda;
   font-weight: 700;
-  font-size: clamp(1.3rem, 3vw, 2.5rem);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
 `;
 
 export const Image = styled.img`

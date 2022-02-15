@@ -26,7 +26,6 @@ export const Box = styled.div`
   display: flex;
   gap: 1.5rem;
   flex-direction: column;
-
 `;
 
 export const Title = styled.span`
