@@ -17,8 +17,8 @@ export function CardComponent(props: CardProps) {
         <Description>{props.description}</Description>
       </Box>
       <Languages>
-        {props.topics.map((topic) => {
-          return <span>{topic}</span>;
+        {props.topics.map((topic, index) => {
+          return <span key={index}>{topic}</span>;
         })}
       </Languages>
     </Container>
