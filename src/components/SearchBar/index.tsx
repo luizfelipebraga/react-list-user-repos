@@ -2,9 +2,22 @@ import { useCallback, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { Container, Input, SearchIcon, Box } from "./styles";
 
+type RepoProps = {
+  id: number;
+  name: string;
+  description: string;
+  html_url: string;
+  topics: string[];
+};
+
+type InfoUser = {
+  name: string;
+  avatar_url: string;
+};
+
 type SearchProps = {
-  setRepos: any;
-  setInfoUser: any;
+  setRepos: React.Dispatch<React.SetStateAction<RepoProps[]>>;
+  setInfoUser: React.Dispatch<React.SetStateAction<InfoUser>>;
 };
 
 export function SearchBarComponent({ setRepos, setInfoUser }: SearchProps) {
@@ -19,12 +32,12 @@ export function SearchBarComponent({ setRepos, setInfoUser }: SearchProps) {
     api
       .get(`${trimUsername}/repos?sort=updated&per_page=9`)
       .then((response) => setRepos(response.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
 
     api
       .get(`${trimUsername}`)
       .then((response) => setInfoUser(response.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }, [username, setRepos, setInfoUser]);
 
   useEffect(() => {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LoadMoreButton } from "../Buttons/LoadMore";
 import { CardComponent } from "../CardRepo";
 import { FooterComponent } from "../Footer";
 import { InfosUserComponent } from "../InfoUser";
@@ -32,7 +33,6 @@ export function ContentComponent() {
       {userRepo.length > 1 ? (
         <Grid>
           {userRepo.map((repo) => {
-            console.log(repo)
             return (
               <CardComponent
                 key={repo.id}
@@ -52,10 +52,11 @@ export function ContentComponent() {
             textAlign: "center",
           }}
         >
-          <strong style={{marginLeft: '2rem', textTransform: 'uppercase'}}>not found</strong>
+          <strong style={{ marginLeft: '2rem', textTransform: 'uppercase' }}>not found</strong>
         </span>
       )}
-      <FooterComponent/>
+      <LoadMoreButton />
+      <FooterComponent />
     </Container>
   );
 }
