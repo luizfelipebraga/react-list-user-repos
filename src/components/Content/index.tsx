@@ -31,6 +31,7 @@ export function ContentComponent() {
       <SearchBarComponent setRepos={setUserRepo} setInfoUser={setInfoUser} />
       <InfosUserComponent name={infoUser.name} avatar={infoUser.avatar_url} />
       {userRepo.length > 1 ? (
+        <>
         <Grid>
           {userRepo.map((repo) => {
             return (
@@ -44,6 +45,8 @@ export function ContentComponent() {
             );
           })}
         </Grid>
+      <LoadMoreButton />
+      </>
       ) : (
         <span
           style={{
@@ -52,10 +55,9 @@ export function ContentComponent() {
             textAlign: "center",
           }}
         >
-          <strong style={{ marginLeft: '2rem', textTransform: 'uppercase' }}>not found</strong>
+          <strong style={{ marginLeft: '2rem', textTransform: 'uppercase' }}>not found repository</strong>
         </span>
       )}
-      <LoadMoreButton />
       <FooterComponent />
     </Container>
   );
