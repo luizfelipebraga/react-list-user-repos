@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin: 50px 0px 0px;
+  margin: 6rem 0px 0px;
 
   img {
     height: 5rem;
