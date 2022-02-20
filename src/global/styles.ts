@@ -28,10 +28,27 @@ export const GlobalStyle = createGlobalStyle`
     background-image: linear-gradient(91.18deg, rgb(13, 13, 14) 32.63%, rgb(20, 20, 22) 62.22%);
 
     -ms-overflow-style: none;
-    scrollbar-width: none;
+    scrollbar-width: 1rem;
 
     &::-webkit-scrollbar {
-      display: none;
+      /* display: none; */
+    }
+  }
+
+  body {
+    &::-webkit-scrollbar {
+        width: .5rem;
+      }
+
+    &::-webkit-scrollbar-track {
+      background: #0d0d0e;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #fff;
+      width: 1rem;
+      border-radius: 1rem;
+      border: 1px solid #000;
     }
   }
 
