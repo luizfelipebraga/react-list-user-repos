@@ -21,6 +21,7 @@ export const Name = styled.span`
 
 export const Image = styled.img`
   height: 7rem;
+  width: 7rem;
   object-fit: cover;
   border-right: .3rem solid #64ffda;
   border-top-right-radius: .5rem;

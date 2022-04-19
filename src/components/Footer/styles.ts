@@ -10,6 +10,7 @@ export const Container = styled.div`
 
   img {
     height: 5rem;
+    width: 5rem;
   }
 
   span {

@@ -19,7 +19,7 @@ type InfoUser = {
   avatar_url: string;
 };
 
-export function ContentComponent() {
+export default function ContentComponent() {
   const [userRepo, setUserRepo] = useState<RepoProps[]>([]);
   const [infoUser, setInfoUser] = useState<InfoUser>({
     name: "",
@@ -32,21 +32,21 @@ export function ContentComponent() {
       <InfosUserComponent name={infoUser.name} avatar={infoUser.avatar_url} />
       {userRepo.length > 1 ? (
         <>
-        <Grid>
-          {userRepo.map((repo) => {
-            return (
-              <CardComponent
-                key={repo.id}
-                url={repo.html_url}
-                name={repo.name}
-                description={repo.description}
-                topics={repo.topics}
-              />
-            );
-          })}
-        </Grid>
-      <LoadMoreButton />
-      </>
+          <Grid>
+            {userRepo.map((repo) => {
+              return (
+                <CardComponent
+                  key={repo.id}
+                  url={repo.html_url}
+                  name={repo.name}
+                  description={repo.description}
+                  topics={repo.topics}
+                />
+              );
+            })}
+          </Grid>
+          {/* <LoadMoreButton /> */}
+        </>
       ) : (
         <span
           style={{

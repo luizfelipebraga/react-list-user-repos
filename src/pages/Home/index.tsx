@@ -1,10 +1,16 @@
-import { ContentComponent } from "../../components/Content";
+import { lazy, Suspense } from "react";
 import { Container } from "./styles";
 
+const ContentComponent = lazy(() => import('../../components/Content'))
+const renderLoader = () => <p style={{ color: "white" }}>Loading</p>;
+
 export function Home() {
+
   return (
-    <Container>
-      <ContentComponent />
-    </Container>
+    <Suspense fallback={renderLoader()}>
+      <Container>
+        <ContentComponent />
+      </Container>
+    </Suspense>
   );
 }

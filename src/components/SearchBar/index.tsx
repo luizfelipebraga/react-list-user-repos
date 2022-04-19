@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { Container, Input, SearchIcon, Box } from "./styles";
+import {useLoading} from 'react-hook-loading'
 
 type RepoProps = {
   id: number;
@@ -20,6 +21,7 @@ type SearchProps = {
   setInfoUser: React.Dispatch<React.SetStateAction<InfoUser>>;
 };
 
+
 export function SearchBarComponent({ setRepos, setInfoUser }: SearchProps) {
   const [username, setUsername] = useState<string>("luizfelipebraga");
 
@@ -32,12 +34,12 @@ export function SearchBarComponent({ setRepos, setInfoUser }: SearchProps) {
     api
       .get(`${trimUsername}/repos?sort=updated&per_page=9`)
       .then((response) => setRepos(response.data))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
 
     api
       .get(`${trimUsername}`)
       .then((response) => setInfoUser(response.data))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
   }, [username, setRepos, setInfoUser]);
 
   useEffect(() => {

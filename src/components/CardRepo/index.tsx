@@ -8,8 +8,6 @@ type CardProps = {
 };
 
 export function CardComponent(props: CardProps) {
-  let slideAr: string[] = [];
-
   return (
     <Container href={props.url} target="_blank" rel="noopener">
       <Box>

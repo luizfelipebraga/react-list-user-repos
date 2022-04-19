@@ -45,7 +45,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #fff;
+      background-color: #64ffda;
       width: 1rem;
       border-radius: 1rem;
       border: 1px solid #000;
