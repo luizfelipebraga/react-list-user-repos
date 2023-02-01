@@ -1,7 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
-import { api } from "../../services/api";
+import { useEffect, useState } from "react";
 import { Container, Input, SearchIcon, Box } from "./styles";
-import {useLoading} from 'react-hook-loading'
+import { useUser } from "./hooks";
+
+interface SearchProps {
+  onDataReceived: (data: DataUser | undefined) => void;
+  onLoading: (isLoading: boolean) => void;
+}
 
 type RepoProps = {
   id: number;
@@ -9,41 +13,30 @@ type RepoProps = {
   description: string;
   html_url: string;
   topics: string[];
-};
+}[];
 
 type InfoUser = {
   name: string;
   avatar_url: string;
 };
 
-type SearchProps = {
-  setRepos: React.Dispatch<React.SetStateAction<RepoProps[]>>;
-  setInfoUser: React.Dispatch<React.SetStateAction<InfoUser>>;
+export type DataUser = {
+  reponseUserRepo: RepoProps;
+  reponseUserInfo: InfoUser;
 };
 
-
-export function SearchBarComponent({ setRepos, setInfoUser }: SearchProps) {
+export function SearchBarComponent({ onDataReceived, onLoading }: SearchProps) {
   const [username, setUsername] = useState<string>("luizfelipebraga");
 
-  const getUserRepos = useCallback(() => {
-
-    if(username.trim() === '') return;
-
-    const trimUsername = username.trim();
-
-    api
-      .get(`${trimUsername}/repos?sort=updated&per_page=9`)
-      .then((response) => setRepos(response.data))
-      .catch((err) => console.error(err))
-
-    api
-      .get(`${trimUsername}`)
-      .then((response) => setInfoUser(response.data))
-      .catch((err) => console.error(err))
-  }, [username, setRepos, setInfoUser]);
+  const FetchData = async () => {
+    onLoading(true);
+    const data = await useUser(username);
+    onDataReceived(data);
+    onLoading(false);
+  };
 
   useEffect(() => {
-    getUserRepos();
+    FetchData();
   }, []);
 
   return (
@@ -51,10 +44,10 @@ export function SearchBarComponent({ setRepos, setInfoUser }: SearchProps) {
       <Box>
         <Input
           onChange={(event) => setUsername(event.target.value)}
-          onKeyPress={(event) => event.key === 'Enter' && getUserRepos()}
-          placeholder="search for username..."
+          onKeyPress={(event) => event.key === "Enter" && FetchData()}
+          placeholder="Search for username..."
         />
-        <SearchIcon size={20} onClick={getUserRepos} />
+        <SearchIcon size={20} onClick={FetchData} />
       </Box>
     </Container>
   );
