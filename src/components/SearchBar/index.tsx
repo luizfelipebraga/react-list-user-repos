@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Input, SearchIcon, Box } from "./styles";
-import { useUser } from "./hooks";
+import { getReposUser, getUserInfo } from "../../api/api";
+import { toast } from "react-toastify";
 
 interface SearchProps {
   onDataReceived: (data: DataUser | undefined) => void;
@@ -29,10 +30,47 @@ export function SearchBarComponent({ onDataReceived, onLoading }: SearchProps) {
   const [username, setUsername] = useState<string>("luizfelipebraga");
 
   const FetchData = async () => {
-    onLoading(true);
-    const data = await useUser(username);
-    onDataReceived(data);
-    onLoading(false);
+    try {
+      onLoading(true);
+      const [repos, userInfo] = await Promise.all([
+        getReposUser(username.trim()),
+        getUserInfo(username.trim()),
+      ]);
+
+      let storeReponse: DataUser = {
+        reponseUserRepo: repos,
+        reponseUserInfo: userInfo,
+      };
+
+      onDataReceived(storeReponse);
+      onLoading(false);
+
+      toast.success(`Usuário ${storeReponse.reponseUserInfo.name} encontrado!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+
+      return storeReponse;
+    } catch (error) {
+      console.error(error);
+      onLoading(false);
+      toast.error("Usuário não encontrado!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   useEffect(() => {

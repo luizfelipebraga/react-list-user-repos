@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { LoadMoreButton } from "../Buttons/LoadMore";
 import { CardComponent } from "../CardRepo";
 import { FooterComponent } from "../Footer";
 import { InfosUserComponent } from "../InfoUser";
@@ -48,7 +47,7 @@ export default function ContentComponent() {
             name={infoUser.name}
             avatar={infoUser.avatar_url}
           />
-          {userRepo.length > 1 ? (
+          {userRepo?.length > 1 ? (
             <>
               <Grid>
                 {userRepo.map((repo) => {
